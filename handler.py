@@ -23,8 +23,6 @@ known_face_encodings = unknown_image['encoding']
 # Function to read the 'encoding' file
 
 def upload_output_to_s3(filename, contents):
-	
-
 	with open('/tmp/' + filename, "w") as fp:
 		fp.write(",".join(contents))
 	
@@ -44,7 +42,6 @@ def get_item_ddb(key):
     Key={
         'name': {'S': key}
     })
-
 	item = response['Item']
 	return [item['name']['S'], item['major']['S'], item['year']['S']]
 
@@ -57,13 +54,10 @@ def get_name(event):
 		print("In event")
 		print(event_type)
 		print(video_link)
-
 		video = cv2.VideoCapture(video_link)
 		ret, frame = video.read()
-
 		rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 		face_locations = face_recognition.face_locations(rgb_frame)
-
 		frame_count = 1
 		while True:
 			ret, frame = video.read()
@@ -109,12 +103,9 @@ def open_encoding(filename):
 	return data
 
 def face_recognition_handler(event, context):	
-	
 	name = get_name(event)
-
 	upload_output_to_s3(filename=event['Records'][0]['s3']['object']['key'].split(".")[0], 
 		     contents=get_item_ddb(name))
-	
 	return {
         'headers': {'Content-Type' : 'application/json'},
         'statusCode': 200,

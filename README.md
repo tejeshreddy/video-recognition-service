@@ -1,29 +1,31 @@
-# smart-classroom-face-recognition
-Developing a smart classroom assistant for educators as part of CSE 546 project.
+# Cloud Computing Project 2
 
+Group Project 2: PaaS
 
+## Overview
 
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 704676190155.dkr.ecr.us-east-1.amazonaws.com    
+## Group Members and Task
 
-aws ecr create-repository --repository-name smart-classroom --image-scanning-configuration scanOnPush=true --image-tag-mutability MUTABLE
+## AWS Credentials and Accesses
 
+- ECR Details
+  - Region: us-east-1
+  - URI: 704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom
 
-docker tag  smart-classroom:latest 704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
-docker push 704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
+- Lambda Details
+  - Region: us-east-1
+  - Function ARN: arn:aws:lambda:us-east-1:704676190155:function:smart-classroom
+  - Architecture: arm64
+  - ENTRYPOINT: /entry.sh
+  - CMD: handler.face_recognition_handler
+  - WORKDIR: /home/app/
 
+- DyanmoDB Details
+  - Region: us-east-1
+  - Function Name: student_table
+  - ARN: arn:aws:dynamodb:us-east-1:704676190155:table/student_table  
 
-aws lambda create-function \
---function-name smart-classroom-function \
---region us-east-1 \
---code ImageUri=704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest \
---role arn:aws:iam::704676190155:role/cc-project-2-lambda-access \
---handler lambdaHandler \
---runtime python3.9
+## Resources
 
-
-aws lambda create-function \
---function-name smart-classroom-function \
---region us-east-1 \
---code ImageUri=704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest \
---role arn:aws:iam::704676190155:role/cc-project-2-lambda-access \
---package-type Image
+- https://docs.aws.amazon.com/lambda/latest/dg/images-create.html
+- https://www.serverless.com/framework/docs/providers/aws/cli-reference/deploy
