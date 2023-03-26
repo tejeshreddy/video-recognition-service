@@ -10,20 +10,20 @@ Group Project 2: PaaS
 
 - ECR Details
   - Region: us-east-1
-  - URI: 704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom
+  - URI: `704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom`
 
 - Lambda Details
   - Region: us-east-1
-  - Function ARN: arn:aws:lambda:us-east-1:704676190155:function:smart-classroom
+  - Function ARN: `arn:aws:lambda:us-east-1:704676190155:function:smart-classroom`
   - Architecture: arm64
-  - ENTRYPOINT: /entry.sh
-  - CMD: handler.face_recognition_handler
-  - WORKDIR: /home/app/
+  - ENTRYPOINT: `/entry.sh`
+  - CMD: `handler.face_recognition_handler`
+  - WORKDIR: `/home/app/`
 
 - DyanmoDB Details
   - Region: us-east-1
   - Function Name: student_table
-  - ARN: arn:aws:dynamodb:us-east-1:704676190155:table/student_table  
+  - ARN: `arn:aws:dynamodb:us-east-1:704676190155:table/student_table`
 
 ## Resources
 
