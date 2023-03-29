@@ -13,10 +13,8 @@ def clear_input_bucket():
 		for item in list_obj["Contents"]:
 			key = item["Key"]
 			s3.delete_object(Bucket=input_bucket, Key=key)
-			print("cleared input bucket")
 	except Exception as e:
 		print(e)
-		print("Nothing to clear in input bucket")
 	
 def clear_output_bucket():
 	global output_bucket
