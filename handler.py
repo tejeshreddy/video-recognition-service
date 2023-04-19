@@ -9,8 +9,8 @@ import pickle
 
 print("Imports done")
 
-input_bucket = "input-bucket-video"
-output_bucket = "output-bucket-vid"
+input_bucket = "input-bucket-vid"
+output_bucket = "output-bucket-vids"
 
 known_face_names = []
 known_face_encodings = []
@@ -38,7 +38,7 @@ def upload_output_to_s3(filename, contents):
 def get_item_ddb(key):
 	dynamodb_client = boto3_client('dynamodb', region_name="us-east-1")
 	response = dynamodb_client.get_item(
-    TableName="student_table",
+    TableName="student-table",
     Key={
         'name': {'S': key}
     })
@@ -48,7 +48,7 @@ def get_item_ddb(key):
 def get_name(event):
 	name = ""
 	event_type = event['Records'][0]['eventName']
-	video_link = "https://input-bucket-video.s3.amazonaws.com/" + event['Records'][0]['s3']['object']['key']
+	video_link = "https://input-bucket-vid.s3.amazonaws.com/" + event['Records'][0]['s3']['object']['key']
 
 	if event_type == "ObjectCreated:Put":
 		print("In event")
@@ -69,12 +69,10 @@ def get_name(event):
 			if len(face_locations) > 0:
 				top, right, bottom, left = face_locations[0]
 				face_image = rgb_frame[top:bottom, left:right]
-				face_encodings = face_recognition.face_encodings(face_image)
+				face_encodings = face_recognition.face_encodings(rgb_frame, [face_locations[0]])
 				if len(face_encodings) > 0:
 					match_results = face_recognition.compare_faces(known_face_encodings, face_encodings[0])
-
 					matches = face_recognition.compare_faces(known_face_encodings, face_encodings[0])
-
 					if True in matches:
 							first_match_index = matches.index(True)
 							name = known_face_names[first_match_index]
@@ -102,10 +100,14 @@ def open_encoding(filename):
 	file.close()
 	return data
 
-def face_recognition_handler(event, context):	
-	name = get_name(event)
-	upload_output_to_s3(filename=event['Records'][0]['s3']['object']['key'].split(".")[0], 
-		     contents=get_item_ddb(name))
+def face_recognition_handler(event, context):
+	try:
+		name = get_name(event)
+		upload_output_to_s3(filename=event['Records'][0]['s3']['object']['key'].split(".")[0], 
+				contents=get_item_ddb(name))
+	except Exception as e:
+		print("Exception Occured")
+		print(e)
 	return {
         'headers': {'Content-Type' : 'application/json'},
         'statusCode': 200,

@@ -1,8 +1,8 @@
 from boto3 import client as boto3_client
 import os
 
-input_bucket = "input-bucket-video"
-output_bucket = "output-bucket-vid"
+input_bucket = "input-bucket-vid"
+output_bucket = "output-bucket-vids"
 test_cases = "test_cases/"
 
 def clear_input_bucket():
