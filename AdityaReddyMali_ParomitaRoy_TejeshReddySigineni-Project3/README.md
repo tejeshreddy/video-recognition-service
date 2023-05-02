@@ -5,8 +5,11 @@ Group Project 3: Hybrid Cloud
 ## Overview
 In our implementation, a user is asked to upload an MP4 file. The video is uploaded into an S3 bucket (input-bucket-video). Once the video is uploaded successfully, a Lamba function is triggered. This function is created out of an image containing the face recognition functionality, also known as the Lambda handler function. It extracts a frame from the video and stores it as an image. A facial recognition module is run on this image, which creates an encoding. The encoding is matched with a known encoding file to retrieve the name of the student. Finally, we use this name to query a DynamoDB, which contains all the relevant information of every student. Based on the query, the details retrieved are stored in CSV format and sent to another S3 bucket. This bucket serves as the output bucket (output-bucket-vid).
 
+## Group Members and Contributions
 
-## Group Members and Task
+- Aditya Reddy Mali: was responsible for setting up the EC2 instance and installing devstack on it. They will then proceed to create and configure Openstack VMs, including network configurations. Additionally, they will upload these VMs to glance, which is an Openstack service that enables users to discover, register, and retrieve virtual machine images. They will also document the problem statement and Openstack configuration.
+- Paromita Roy:  was responsible for ensuring that the Openstack VMs are properly configured, which includes configuring the network settings. They will also be responsible for setting up an S3 event trigger to an SQS queue, which will require them to have a good understanding of AWS services. Furthermore, they will document the coding process thoroughly and take screenshots to provide visual aids for the team's reference.
+- Tejesh Reddy Sigineni: was responsible for configuring and developing output SQS event from a lambda function, this was performed using python programming language. Moreover, they will design an Openstack handler that will pool the input queue and output queue. They will also build the Openstack handler that will invoke the lambda function by passing the SQS event. Additionally, they will document the architecture and testing processes.
 
 ## AWS Credentials and Accesses
 
@@ -66,3 +69,8 @@ In our implementation, a user is asked to upload an MP4 file. The video is uploa
 
 - https://docs.aws.amazon.com/lambda/latest/dg/images-create.html
 - https://www.serverless.com/framework/docs/providers/aws/cli-reference/deploy
+- https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-cli.html
+- https://docs.aws.amazon.com/lambda/latest/dg/images-create.html
+- ​​https://docs.openstack.org/networking-ovn/latest/contributor/testing.html
+- https://docs.openstack.org/devstack/latest/
+
