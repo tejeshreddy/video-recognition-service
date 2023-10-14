@@ -100,6 +100,8 @@ information about every tag associated with each video.
 and output buckets when the program initially starts. It also pushes the user uplaoded MP4 files into the input S3 bucket.
 7. ecr_push.sh: Created a script to run all commands necessary to log into, build and tag the created image, and push it to the ECR repository. This avoids running multiple commands repeatedly.
 Steps to create the environment and run the program:
+
+
    - Setup docker on your system.
    - Retrieve an authentication token and authenticate your Docker client to your registry. 
     ```bash
