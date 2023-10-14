@@ -100,31 +100,31 @@ information about every tag associated with each video.
 and output buckets when the program initially starts. It also pushes the user uplaoded MP4 files into the input S3 bucket.
 7. ecr_push.sh: Created a script to run all commands necessary to log into, build and tag the created image, and push it to the ECR repository. This avoids running multiple commands repeatedly.
 Steps to create the environment and run the program:
-   1. Setup docker on your system.
-   2. Retrieve an authentication token and authenticate your Docker client to your registry.
-```bash
+   - Setup docker on your system.
+   - Retrieve an authentication token and authenticate your Docker client to your registry. 
+    ```bash
   aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin XXX.dkr.ecr.us-east-1.amazonaws.com
   ```
-  3. Create an image containing using the Docker file to include files from the directory.
+  - Create an image containing using the Docker file to include files from the directory.
 ```bash
   docker build -t smart-classroom .
 docker tag smart-classroom:latest 704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
   ```
-  4. Push the image to Amazon ECR.
+  - Push the image to Amazon ECR.
    ```bash
    docker push 704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
    ```
-   5. Update the image URI on the Lambda function to reflect the uploaded handler.py.
+   - Update the image URI on the Lambda function to reflect the uploaded handler.py.
 
 
-   6. Run the workload generator with the following command:
+   - Run the workload generator with the following command:
 
 ```bash
 python3 workload.py
 ```
-   7. Check the input bucket and verify that the videos are being uploaded successfully. Ensure that the number of objects in the bucket matches the number of videos being uploaded.
+   - Check the input bucket and verify that the videos are being uploaded successfully. Ensure that the number of objects in the bucket matches the number of videos being uploaded.
 
-   8. Check the output bucket and verify that the results are accurately labeled.
+   - Check the output bucket and verify that the results are accurately labeled.
 
 ## 6. Output Screenshots
 
