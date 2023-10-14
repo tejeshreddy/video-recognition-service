@@ -108,8 +108,8 @@ Steps to create the environment and run the program:
   aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin XXX.dkr.ecr.us-east-1.amazonaws.com
   ```
   - Create an image containing using the Docker file to include files from the directory.
-```bash
-  docker build -t smart-classroom .
+  ```bash
+    docker build -t smart-classroom .
 docker tag smart-classroom:latest 704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
   ```
   - Push the image to Amazon ECR.
