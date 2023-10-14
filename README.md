@@ -102,31 +102,31 @@ and output buckets when the program initially starts. It also pushes the user up
 Steps to create the environment and run the program:
 
 
-   - Setup docker on your system.
-   - Retrieve an authentication token and authenticate your Docker client to your registry. 
-    ```bash
-  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin XXX.dkr.ecr.us-east-1.amazonaws.com
-  ```
-  - Create an image containing using the Docker file to include files from the directory.
+8. Setup docker on your system.
+9. Retrieve an authentication token and authenticate your Docker client to your registry. 
+```bash
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin XXX.dkr.ecr.us-east-1.amazonaws.com
+```
+10. Create an image containing using the Docker file to include files from the directory.
   ```bash
     docker build -t smart-classroom .
 docker tag smart-classroom:latest 704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
   ```
-  - Push the image to Amazon ECR.
+11. Push the image to Amazon ECR.
    ```bash
    docker push 704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
    ```
-   - Update the image URI on the Lambda function to reflect the uploaded handler.py.
+12. Update the image URI on the Lambda function to reflect the uploaded handler.py.
 
 
-   - Run the workload generator with the following command:
+13. Run the workload generator with the following command:
 
 ```bash
 python3 workload.py
 ```
-   - Check the input bucket and verify that the videos are being uploaded successfully. Ensure that the number of objects in the bucket matches the number of videos being uploaded.
+14. Check the input bucket and verify that the videos are being uploaded successfully. Ensure that the number of objects in the bucket matches the number of videos being uploaded.
 
-   - Check the output bucket and verify that the results are accurately labeled.
+15. Check the output bucket and verify that the results are accurately labeled.
 
 ## 6. Output Screenshots
 
