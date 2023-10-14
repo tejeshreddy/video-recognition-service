@@ -86,7 +86,7 @@ python3 workload.py
 11. Check each object in the output bucket to confirm that the text files contain the CSV formatted output of the pertaining input file.
 
 
-5. Code
+## 5. Code
 The files involved in this application are as follows:
 1. Dockerfile: The dockerfile given to us required some changes. We included the upload of encoding in this file.
 2. Entry.sh: This file ensures that the program runs in the appropriate directory.
@@ -128,12 +128,23 @@ python3 workload.py
 
 ## 6. Output Screenshots
 
-![](./assets/1.png)
-![](./assets/2.png)
-![](./assets/3.png)
-![](./assets/4.png)
 ![](./assets/5.png)
+Fig. Input video files
+
+![](./assets/2.png)
+Fig. Cloudwatch in progress logs
+
+![](./assets/1.png)
+Fig. AWS SQS
+
+![](./assets/4.png)
+Fig. Cloudwatch Logs of Queue Size
+
+![](./assets/3.png)
+Fig. Openstack dashboard
+
 ![](./assets/6.png)
+Fig. Openstack Instance
 
 
 <!-- ## AWS Credentials and Accesses
