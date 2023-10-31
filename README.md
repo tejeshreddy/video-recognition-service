@@ -110,11 +110,11 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 10. Create an image containing using the Docker file to include files from the directory.
   ```bash
     docker build -t smart-classroom .
-docker tag smart-classroom:latest 704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
+docker tag smart-classroom:latest 704676190XXX.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
   ```
 11. Push the image to Amazon ECR.
    ```bash
-   docker push 704676190155.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
+   docker push 704676190XXX.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
    ```
 12. Update the image URI on the Lambda function to reflect the uploaded handler.py.
 
@@ -147,61 +147,6 @@ Fig. Openstack dashboard
 
 ![](./assets/6.png)
 Fig. Openstack Instance
-
-
-<!-- ## AWS Credentials and Accesses
-
-- ECR Details
-  - Region: us-east-1
-  - URI: `arn:aws:lambda:us-east-1:595548125787:function:smart-classroom`
-  - ECR Push Commands
-  
-    ```Retrieve an authentication token and authenticate your Docker client to your registry.
-    Use the AWS CLI:
-
-    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 595548125787.dkr.ecr.us-east-1.amazonaws.com
-    
-    Note: If you receive an error using the AWS CLI, make sure that you have the latest version of the AWS CLI and Docker installed.
-    
-    Build your Docker image using the following command. For information on building a Docker file from scratch see the instructions here . You can skip this step if your image is already built:
-
-    docker build -t smart-classroom .
-    After the build completes, tag your image so you can push the image to this repository:
-
-    docker tag smart-classroom:latest 595548125787.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
-    Run the following command to push this image to your newly created AWS repository:
-
-    docker push 595548125787.dkr.ecr.us-east-1.amazonaws.com/smart-classroom:latest
-    ```
-
-- Lambda Details
-  - Region: us-east-1
-  - Function ARN: `arn:aws:lambda:us-east-1:595548125787:function:smart-classroom`
-  - Architecture: arm64
-  - ENTRYPOINT: `/entry.sh`
-  - CMD: `handler.face_recognition_handler`
-  - WORKDIR: `/home/app/`
-
-- DyanmoDB Details
-  - Region: us-east-1
-  - Function Name: student_table
-  - ARN: `arn:aws:dynamodb:us-east-1:595548125787:table/student-table`
-
-- SQS 
-  - input-notification: 
-    - URL: https://sqs.us-east-1.amazonaws.com/595548125787/input-notification
-  - output-notification
-    - URL: https://sqs.us-east-1.amazonaws.com/595548125787/output-notification
-
-- EC2 Instance
-  - Instance ID: i-0f53f8d352abdcf0b
-  - Public IP: 54.210.6.58
-  
-- OpenStack VM
-  - Image Name: centos
-  - IP Address: 172.31.24.229
-  - Region: Nova -->
-
 
 ## Resources
 
