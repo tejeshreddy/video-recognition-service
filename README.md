@@ -16,31 +16,25 @@ In our implementation, a user uploads an MP4 file to an S3 bucket, which serves 
 
 ### 2.2. AWS Services Used
 
-### 2.2. AWS Services Used
-
-1. AWS EC2 - A service for deploying and scaling virtual machines. Used to host the devstack.
-
-2. AWS SQS - A managed message queuing service for asynchronous communication. Used to store events from S3 input buckets and by Lambda to populate the output queue.
-
-3. AWS S3 - A scalable and durable storage service. Used to store input videos and output CSV files.
-
-4. AWS Lambda - A serverless computing service for running code in response to events. Used for facial recognition and uploading output to SQS and S3.
-
-5. AWS DynamoDB - A NoSQL database service for storing structured and semi-structured data. Used to store student information.
+1. **AWS EC2**: A service for deploying and scaling virtual machines. Used to host the devstack.
+2. **AWS SQS**: A managed message queuing service for asynchronous communication. Used to store events from S3 input buckets and by Lambda to populate the output queue.
+3. **AWS S3**: A scalable and durable storage service. Used to store input videos and output CSV files.
+4. **AWS Lambda**: A serverless computing service for running code in response to events. Used for facial recognition and uploading output to SQS and S3.
+5. **AWS DynamoDB**: A NoSQL database service for storing structured and semi-structured data. Used to store student information.
 
 ## 3. OpenStack
 
 ### 3.1 OpenStack Services Used
 
-1. Horizon: A web-based dashboard for managing OpenStack resources and services.
-2. Nova: The compute service for creating and managing virtual machines.
-3. Neutron: The networking service for managing virtual networks and network services.
-4. Glance: The image service for managing disk images used to create virtual machines.
+1. **Horizon**: A web-based dashboard for managing OpenStack resources and services.
+2. **Nova**: The compute service for creating and managing virtual machines.
+3. **Neutron**: The networking service for managing virtual networks and network services.
+4. **Glance**: The image service for managing disk images used to create virtual machines.
 
 ### 3.2 Setting up OpenStack
 
-1. An AWS EC2 t2.large instance was used to install devstack due to OpenStack's resource requirements.
-2. Devstack was installed on the EC2 instance using the following commands:
+1. **AWS EC2 Instance**: An AWS EC2 t2.large instance was used to install devstack due to OpenStack's resource requirements.
+2. **Devstack Installation**: Devstack was installed on the EC2 instance using the following commands:
 
 ```bash
 sudo useradd -s /bin/bash -d /opt/stack -m stack
